@@ -117,17 +117,31 @@ namespace ProductReviewManagement
             table.Rows.Add(7, 7, 13,"average", true);
             table.Rows.Add(8, 1, 2,"bad", false);
 
-            RetrieveDataFromDataTable(table);
+            //RetrieveDataFromDataTable(table);
+            Console.WriteLine();
+            RetrieveDataFromDataTables(table);
+
+
         }
         public static void RetrieveDataFromDataTable(DataTable table)
         {
             var result = (from product in table.AsEnumerable() select product.Field<int>("ProductID")).ToList();
-                Console.WriteLine("Product names are");
+                Console.WriteLine("Product ID's are");
             foreach(var product in result)
             {
                 Console.WriteLine(product);
             }
         }
-
+        //This method for retrieve records who's Islike value is true
+        public static void RetrieveDataFromDataTables(DataTable table)
+        {
+            var result = (from product in table.AsEnumerable() where product.Field<bool>("IsLike") == true select product.Field<int>("ProductID")).ToList();
+            Console.WriteLine("Product Id of Who's Islike value is true are : ");
+            foreach (var product in result)
+            {
+                Console.WriteLine("Product ID : "+ product);
+            }
+        }
+       
     }
 }
