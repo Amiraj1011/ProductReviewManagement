@@ -30,6 +30,8 @@ namespace ProductReviewManagement
             RetrieveRecordsBasedOnRatingAndProductId(list);
             Console.WriteLine("\n");
             CountingProductId(list);
+            Console.WriteLine("\n");
+            RetrieveProductIDAndReview(list);
             Console.ReadLine();
         }
         //This method for retrieve top three records from list
@@ -62,6 +64,16 @@ namespace ProductReviewManagement
             {
                 Console.WriteLine("ProductId " + element.productID + "\t" + "Count " + element.count);
                 Console.WriteLine("---------------");
+            }
+        }
+
+        //This method for Retrieve product id and review from list of all recoprds
+        public static void RetrieveProductIDAndReview(List<ProductReview> productReviewsList)
+        {
+            var p = productReviewsList.Select(product => new { productID = product.ProductId, review = product.Review });
+            foreach (var element in p )
+            {
+                Console.WriteLine("ProductID: " + element.productID + "\t" + "Review:" + element.review);
             }
         }
     }
